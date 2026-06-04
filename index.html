@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D-RECHARGE Admin Login</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial}
+body{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);height:100vh;display:flex;align-items:center;justify-content:center}
+.login-box{background:white;padding:40px 30px;border-radius:15px;box-shadow:0 10px 40px rgba(0,0,0,0.3);width:90%;max-width:350px}
+h2{text-align:center;color:#333;margin-bottom:25px}
+input{width:100%;padding:12px;margin:10px 0;border:2px solid #ddd;border-radius:8px;font-size:16px}
+input:focus{border-color:#667eea;outline:none}
+button{width:100%;padding:12px;background:#667eea;color:white;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:10px}
+button:active{background:#5568d3}
+#status{color:#e74c3c;text-align:center;margin-top:15px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="login-box">
+<h2>D-RECHARGE Admin</h2>
+<input type="text" id="user" placeholder="Username" autocomplete="off">
+<input type="password" id="pass" placeholder="Password">
+<button onclick="login()">Login</button>
+<p id="status"></p>
+</div>
+
+<script>
+function login(){
+  let u = document.getElementById('user').value.trim();
+  let p = document.getElementById('pass').value.trim();
+  
+  if(u=="admin" && p=="123456"){
+    localStorage.setItem('admin','yes');
+    window.location.href = 'dashboard.html';
+  } else {
+    document.getElementById('status').innerText = "❌ Wrong Username or Password!";
+    document.getElementById('pass').value = "";
+  }
+}
+
+// Enter key press කරාම login
+document.getElementById('pass').addEventListener('keypress', function(e){
+  if(e.key === 'Enter') login();
+});
+</script>
+</body>
+</html>
